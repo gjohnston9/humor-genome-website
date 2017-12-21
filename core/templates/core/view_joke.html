@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>{{ joke.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'core:rate' joke.joke_id %}" method="post">
+	{% csrf_token %}
+	<p>{{ joke.body }}</p>
+
+	<input type="radio" name="rating" id="1" value="1" />
+	<label for="1">Not funny</label><br/>
+
+	<input type="radio" name="rating" id="2" value="2" />
+	<label for="2">Barely funny</label><br/>
+
+	<input type="radio" name="rating" id="3" value="3" />
+	<label for="3">Decently funny</label><br/>
+
+	<input type="radio" name="rating" id="4" value="4" />
+	<label for="4">Very funny</label><br/>
+
+	<input type="radio" name="rating" id="5" value="5" />
+	<label for="5">Absolutely hilarious</label><br/>
+	<br/>
+<input type="submit" value="Rate" />
+</form>
+{% endblock %}
